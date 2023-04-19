@@ -103,9 +103,6 @@ void AXP192Component::begin(bool disableLDO2, bool disableLDO3, bool disableRTC,
     if(disableDCDC1) buf &= ~(1<<0);
     Write1Byte(0x12, buf);	
 	
-    SetLDOVoltage(3, 0);  //Vibrator power voltage preset
-    Serial.printf("axp: vibrator voltage preset to 2v\n");
-    
     // 128ms power on, 4s power off
     Write1Byte(0x36, 0x0C);
 
