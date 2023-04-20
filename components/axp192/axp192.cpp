@@ -9,30 +9,7 @@ namespace axp192 {
 static const char *TAG = "axp192.sensor";
 void AXP192Component::setup() 
 {
-  switch (this->model_) {
-    case AXP192_M5STICKC:
-    {
-        begin(false, false, false, false, false);
-    }
-    case AXP192_M5CORE2:
-    {
-        // disable LDO3 Vibration
-        begin(false, true, false, false, false);
-    }
-    case AXP192_M5TOUGH:
-    {
-        begin(false, false, false, false, false);
-
-        // If we're waking from a cold boot
-        if (GetStartupReason() == "ESP_RST_POWERON")
-        {
-            ESP_LOGD(TAG, "First power on, restarting ESP...");
-
-            // Reboot the ESP with the axp initialised
-            ESP.restart();
-    }
-    }
-  }
+  begin(false, true, false, false, false);
 }
 
 void AXP192Component::dump_config() {
